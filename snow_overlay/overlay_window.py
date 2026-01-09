@@ -1,6 +1,6 @@
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget, QShortcut
 from PyQt6.QtCore import Qt, QTimer, QPointF
-from PyQt6.QtGui import QPainter, QColor, QScreen
+from PyQt6.QtGui import QPainter, QColor, QScreen, QKeySequence
 from PyQt6.QtWidgets import QApplication
 
 from .snowflake import Snowflake
@@ -38,6 +38,14 @@ class OverlayWindow(QWidget):
         QWidget.show(self)
         print(f"[OverlayWindow] Window shown, visible: {self.isVisible()}")
 
+        exit_shortcut = QShortcut(QKeySequence("Ctrl+Q"), self)
+        exit_shortcut.activated.connect(self.exit_app)
+
+        escape_shortcut = QShortcut(QKeySequence("Escape"), self)
+        escape_shortcut.activated.connect(self.exit_app)
+
+        print("[OverlayWindow] Hotkeys: Ctrl+Q or Escape to exit")
+
     def init_snowflakes(self):
         screen = QApplication.primaryScreen()
         if screen is not None:
@@ -71,6 +79,10 @@ class OverlayWindow(QWidget):
             self.hide()
         else:
             self.show()
+
+    def exit_app(self):
+        self.timer.stop()
+        QApplication.quit()
 
     def close(self):
         self.timer.stop()
