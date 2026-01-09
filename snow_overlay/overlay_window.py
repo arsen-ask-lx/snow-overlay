@@ -67,7 +67,7 @@ class OverlayWindow(QWidget):
         screen = QApplication.primaryScreen()
         if screen is not None:
             screen_geometry = screen.geometry()
-            self.exit_button.move(screen_geometry.width() - 40, 10)
+            self.exit_button.move(10, screen_geometry.height() - 40)
 
     def init_snowflakes(self):
         screen = QApplication.primaryScreen()
