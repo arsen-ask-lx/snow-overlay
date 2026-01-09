@@ -34,8 +34,8 @@ ENV/
 *~
 .DS_Store
 
-# OpenCode
-.opencode/
+# OpenCode (kept in repo for agents and skills)
+# .opencode/
 
 # PyQt6 compiled resources
 *.pyc
