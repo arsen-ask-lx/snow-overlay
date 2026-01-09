@@ -1,0 +1,16 @@
+class Config:
+    SNOW_COUNT = 500
+    MIN_SIZE = 1.0
+    MAX_SIZE = 4.0
+    MIN_SPEED = 1.0
+    MAX_SPEED = 3.0
+    SWAY_AMPLITUDE_MIN = 0.5
+    SWAY_AMPLITUDE_MAX = 2.0
+    SWAY_FREQUENCY_MIN = 0.02
+    SWAY_FREQUENCY_MAX = 0.05
+    OPACITY_MIN = 0.4
+    OPACITY_MAX = 0.9
+    FPS = 60
+
+
+config = Config()
