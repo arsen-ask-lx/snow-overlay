@@ -1,6 +1,6 @@
-from PyQt6.QtWidgets import QWidget, QShortcut
+from PyQt6.QtWidgets import QWidget
 from PyQt6.QtCore import Qt, QTimer, QPointF
-from PyQt6.QtGui import QPainter, QColor, QScreen, QKeySequence
+from PyQt6.QtGui import QPainter, QColor, QScreen, QKeySequence, QShortcut
 from PyQt6.QtWidgets import QApplication
 
 from .snowflake import Snowflake
