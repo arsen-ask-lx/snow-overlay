@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget, QPushButton
 from PyQt6.QtCore import Qt, QTimer, QPointF
 from PyQt6.QtGui import QPainter, QColor, QScreen, QKeySequence, QShortcut
 from PyQt6.QtWidgets import QApplication
@@ -45,6 +45,29 @@ class OverlayWindow(QWidget):
         escape_shortcut.activated.connect(self.exit_app)
 
         print("[OverlayWindow] Hotkeys: Ctrl+Q or Escape to exit")
+
+        self.exit_button = QPushButton("✕", self)
+        self.exit_button.setFixedSize(30, 30)
+        self.exit_button.clicked.connect(self.exit_app)
+        self.exit_button.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(255, 255, 255, 180);
+                border: 1px solid rgba(255, 255, 255, 100);
+                border-radius: 15px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #333;
+            }
+            QPushButton:hover {
+                background-color: rgba(255, 100, 100, 200);
+                color: white;
+            }
+        """)
+
+        screen = QApplication.primaryScreen()
+        if screen is not None:
+            screen_geometry = screen.geometry()
+            self.exit_button.move(screen_geometry.width() - 40, 10)
 
     def init_snowflakes(self):
         screen = QApplication.primaryScreen()
