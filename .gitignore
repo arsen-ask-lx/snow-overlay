@@ -39,3 +39,6 @@ ENV/
 
 # PyQt6 compiled resources
 *.pyc
+
+# отчёт последнего прогона — эфемерный, живёт локально
+.aqk/last-run.md

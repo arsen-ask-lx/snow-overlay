@@ -1,0 +1,13 @@
+# Реестр долга: no-print-in-prod
+# Снят 2026-09-04. Список разрешается ТОЛЬКО укорачивать.
+# Новое нарушение красит гейт; исправленное вычёркивается автоматически.
+./main.py:    print("[Snow Overlay] App started. Tray icon should appear in system tray.")
+./main.py:    print("[Snow Overlay] Check system tray for snowflake icon.")
+./main.py:    print(f"[Snow Overlay] Window visible: {overlay.isVisible()}")
+./snow_overlay/overlay_window.py:        print("[OverlayWindow] Hotkeys: Ctrl+Q or Escape to exit")
+./snow_overlay/overlay_window.py:        print(f"[OverlayWindow] Created {len(self.snowflakes)} snowflakes")
+./snow_overlay/overlay_window.py:        print(f"[OverlayWindow] Window shown, visible: {self.isVisible()}")
+./snow_overlay/tray_icon.py:            print("[TrayIcon] System tray is available")
+./snow_overlay/tray_icon.py:            print("[TrayIcon] WARNING: System tray is NOT available on this system!")
+./snow_overlay/tray_icon.py:        print("[TrayIcon] Tray icon shown")
+./snow_overlay/tray_icon.py:        print(f"[TrayIcon] Icon set, isValid: {not icon.isNull()}")

@@ -1,0 +1,29 @@
+# Проверки качества, объявленные в .aqk.yml, прогоняются на чужой машине при каждом пуше.
+# Список шагов здесь намеренно не дублирует список проверок: действие запускает ровно то,
+# что объявлено в манифесте, поэтому добавленный гейт едет в конвейер сам.
+name: aqk
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      # Два коммита, а не один: гейту про состав коммита нужен родитель, иначе весь репозиторий
+      # выглядит изменённым и проверка честно пропускает себя.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: arsen-ask-lx/Agent_Quality_Kit@v0.4.2
+        with:
+          min: 1

@@ -1,8 +1,9 @@
 # Snow Overlay
 
+[![AQK-2](https://img.shields.io/badge/AQK-2-blue)](https://github.com/arsen-ask-lx/Agent_Quality_Kit)
+
 A beautiful desktop snow effect that sits on top of all your windows without blocking mouse clicks. Built with PyQt6.
 
-![Snow Overlay](docs/preview.png)
 
 ## Features
 
