@@ -1,0 +1,16 @@
+intent: отладочная печать не доезжает до прод-кода
+intent_en: debug printing does not reach production code
+
+# Запись касается только языков, где есть эта конструкция. В проекте на Go или
+# Rust она не показывается вовсе.
+trigger:
+  langs: python, javascript, typescript
+
+recipes:
+  any: bash {gate}/check.sh {dir}
+  python: ruff check --select T20 {dir}
+  typescript: eslint --rule '{"no-console":"error"}' {dir}
+
+proof: incidents/README.md, 2026-09-03 «печать внутри комментария считалась печатью» —
+  прогон по audit_project: 40 находок, из них 5 настоящих (отладочный хук во фронтенде,
+  печатавший размеры окна в консоль пользователя)

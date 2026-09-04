@@ -1,0 +1,36 @@
+# .aqk.yml — манифест Agent Quality Kit
+# Что это: машиночитаемое описание того, как в этом репозитории живут агенты.
+# Уровень соответствия считает `aqk doctor`. Пустое поле = ступень не пройдена,
+# и это честно: заполнять заглушками бессмысленно, проверяются файлы, а не слова.
+
+aqk: 1
+
+# AQK-0 — что агент читает первым.
+entry:
+  - AGENTS.md
+
+# AQK-1 — где стандарты и какие проверки обязательны.
+rules: .aqk/rules
+gates:
+  # Имя: команда, возвращающая 0 или не 0. Пустое объявление защиты не даёт и бракуется
+  # проверкой «объявленный гейт запускается» — поэтому здесь примеры, а не заготовки.
+  #   lint: "ruff check ."
+  #   test: "pytest -q"
+  # Поставить готовую запись из каталога вместе с образцами: aqk add <имя>
+  secrets-not-in-code: "bash gates/secrets-not-in-code/check.sh ."
+  no-print-in-prod: "bash ratchets/_ratchet.sh ratchets/no-print-in-prod.txt bash gates/no-print-in-prod/check.sh ."
+  swallowed-error: "bash gates/swallowed-error/check.sh ."
+  todo-without-task: "bash gates/todo-without-task/check.sh ."
+  file-size-limit: "bash gates/file-size-limit/check.sh ."
+  complexity-limit: "bash gates/complexity-limit/check.sh ."
+  deps-are-pinned: "bash ratchets/_ratchet.sh ratchets/deps-are-pinned.txt bash gates/deps-are-pinned/check.sh ."
+  entry-links-exist: "bash gates/entry-links-exist/check.sh ."
+
+# AQK-2 — чем доказано, что гейты работают, и где реестры долга.
+# samples: каталог с красными и зелёными образцами (гейт обязан краснеть на первом
+# и молчать на втором). ratchets: списки известных нарушений, которые могут только
+# укорачиваться.
+samples: gates
+ratchets: ratchets
+# AQK-3 — где копятся уроки. Путь или адрес.
+lessons: ""
